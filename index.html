@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>或陽の大逆転サイコロ｜公式ルールブック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold:#C9A227;
+    --gold-soft:#E4C661;
+    --crimson:#7A1F2B;
+    --crimson-soft:#9E3240;
+    --ink:#1b1712;
+    --paper:#FBF8F1;
+    --paper-dim:#F1ECDD;
+    --line:#D9CFAF;
+    --max-w:860px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Zen Kaku Gothic New","Shippori Mincho",serif;
+    line-height:1.9;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--crimson);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:5.5rem 1.5rem 4.5rem;
+    text-align:center;
+    background:
+      radial-gradient(ellipse at 30% 0%, rgba(201,162,39,0.18), transparent 60%),
+      radial-gradient(ellipse at 75% 20%, rgba(122,31,43,0.12), transparent 55%),
+      var(--ink);
+    color:var(--paper);
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      linear-gradient(135deg, transparent 48%, rgba(201,162,39,0.5) 49%, rgba(201,162,39,0.5) 50%, transparent 51%);
+    opacity:0.08;
+    pointer-events:none;
+  }
+  .hero .kicker{
+    font-size:0.8rem;
+    letter-spacing:0.35em;
+    color:var(--gold-soft);
+    margin-bottom:1.2rem;
+  }
+  .hero h1{
+    font-family:"Shippori Mincho",serif;
+    font-weight:800;
+    font-size:clamp(2.1rem, 6vw, 3.4rem);
+    margin:0 0 0.6rem;
+    letter-spacing:0.04em;
+  }
+  .hero .sub{
+    font-size:1.05rem;
+    color:var(--paper-dim);
+    opacity:0.85;
+  }
+  .hero .badge{
+    display:inline-block;
+    margin-top:1.8rem;
+    padding:0.4rem 1.3rem;
+    border:1px solid var(--gold);
+    border-radius:999px;
+    font-size:0.85rem;
+    letter-spacing:0.1em;
+    color:var(--gold-soft);
+  }
+
+  /* ---------- Layout ---------- */
+  .wrap{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:0 1.6rem;
+  }
+  nav.toc{
+    max-width:var(--max-w);
+    margin:-2.2rem auto 3rem;
+    padding:1.4rem 1.7rem;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:4px;
+    box-shadow:0 10px 30px -18px rgba(0,0,0,0.35);
+    position:relative;
+    z-index:2;
+  }
+  nav.toc .toc-title{
+    font-size:0.8rem;
+    letter-spacing:0.25em;
+    color:var(--crimson);
+    margin-bottom:0.9rem;
+    font-weight:700;
+  }
+  nav.toc ol{
+    columns:2;
+    column-gap:2rem;
+    margin:0; padding:0;
+    list-style:none;
+    counter-reset:toc;
+  }
+  nav.toc li{
+    counter-increment:toc;
+    margin-bottom:0.55rem;
+    font-size:0.92rem;
+    break-inside:avoid;
+  }
+  nav.toc li a{
+    text-decoration:none;
+    color:var(--ink);
+  }
+  nav.toc li a:hover{ color:var(--crimson); }
+  nav.toc li::before{
+    content: counter(toc) " ";
+    color:var(--gold);
+    font-weight:700;
+    margin-right:0.3em;
+  }
+
+  main{ padding-bottom:5rem; }
+
+  section{
+    margin:0 0 3.4rem;
+    scroll-margin-top:1.5rem;
+  }
+  section h2{
+    font-family:"Shippori Mincho",serif;
+    font-size:1.5rem;
+    font-weight:700;
+    margin:0 0 1.1rem;
+    padding-bottom:0.6rem;
+    border-bottom:2px solid var(--gold);
+    display:flex;
+    align-items:baseline;
+    gap:0.6rem;
+  }
+  section h2 .num{
+    font-size:0.95rem;
+    color:var(--crimson);
+    font-weight:700;
+    font-family:"Zen Kaku Gothic New",sans-serif;
+  }
+  section h3{
+    font-size:1.05rem;
+    font-weight:700;
+    margin:1.6rem 0 0.6rem;
+    color:var(--crimson-soft);
+  }
+  p{ margin:0 0 0.9rem; }
+  ul,ol{ margin:0 0 1rem; padding-left:1.4rem; }
+  li{ margin-bottom:0.45rem; }
+
+  .note{
+    background:var(--paper-dim);
+    border-left:3px solid var(--gold);
+    padding:0.9rem 1.1rem;
+    border-radius:2px;
+    font-size:0.93rem;
+    margin:1rem 0;
+  }
+  .note.strong{
+    border-left-color:var(--crimson);
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin:1.1rem 0 1.4rem;
+    font-size:0.95rem;
+  }
+  th,td{
+    border:1px solid var(--line);
+    padding:0.6rem 0.8rem;
+    text-align:left;
+  }
+  th{
+    background:var(--ink);
+    color:var(--gold-soft);
+    font-weight:600;
+    font-size:0.88rem;
+    letter-spacing:0.05em;
+  }
+  tr:nth-child(even) td{ background:rgba(201,162,39,0.06); }
+
+  .rank{
+    font-family:"Zen Kaku Gothic New",sans-serif;
+    font-weight:700;
+    letter-spacing:0.02em;
+  }
+  .rank .gt{ color:var(--crimson); margin:0 0.35em; font-weight:400; }
+
+  .special-tag{
+    display:inline-block;
+    padding:0.1rem 0.55rem;
+    border-radius:3px;
+    font-size:0.85rem;
+    font-weight:700;
+    color:#fff;
+  }
+  .tag-dai{ background:var(--crimson); }
+  .tag-gyaku{ background:#3a4a6b; }
+  .tag-ten{ background:#4a6b4a; }
+  .tag-oyou{ background:var(--gold); color:var(--ink); }
+
+  footer{
+    text-align:center;
+    padding:2.6rem 1.5rem 3.5rem;
+    color:#8a8372;
+    font-size:0.85rem;
+    border-top:1px solid var(--line);
+  }
+
+  .changelog-grid{
+    display:grid;
+    gap:1rem;
+  }
+  .changelog-item{
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:1rem 1.2rem;
+  }
+  .changelog-item .v{
+    font-weight:700;
+    color:var(--crimson);
+    margin-bottom:0.4rem;
+    font-family:"Zen Kaku Gothic New",sans-serif;
+  }
+
+  /* ---------- Quick-reference flowchart ---------- */
+  .quickref{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:6px;
+    padding:1.4rem 1.5rem 1.6rem;
+    margin:1.1rem 0 1.6rem;
+  }
+  .quickref .quickref-label{
+    font-size:0.75rem;
+    letter-spacing:0.25em;
+    color:var(--gold-soft);
+    margin-bottom:1rem;
+    font-weight:700;
+  }
+  .flow-step{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(228,198,97,0.35);
+    border-radius:4px;
+    padding:0.7rem 1rem;
+    font-size:0.95rem;
+  }
+  .flow-step .q{ font-weight:700; color:var(--gold-soft); }
+  .flow-arrow{
+    text-align:center;
+    color:var(--gold-soft);
+    font-size:1rem;
+    padding:0.15rem 0;
+  }
+  .flow-branch{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.5rem;
+    margin:0.35rem 0 0.1rem;
+  }
+  .flow-branch .yes, .flow-branch .no{
+    flex:1 1 220px;
+    border-radius:4px;
+    padding:0.5rem 0.8rem;
+    font-size:0.88rem;
+    border:1px dashed rgba(251,248,241,0.25);
+  }
+  .flow-branch .yes b, .flow-branch .no b{ color:var(--gold-soft); }
+  .flow-result{ font-weight:700; color:var(--gold-soft); }
+
+  /* ---------- Quick-reference effect tables ---------- */
+  .effect-table{
+    width:100%;
+    border-collapse:collapse;
+    margin:0.9rem 0 1.3rem;
+    font-size:0.92rem;
+  }
+  .effect-table th{
+    width:22%;
+    background:var(--crimson);
+    color:#fff;
+    font-weight:600;
+    font-size:0.85rem;
+    text-align:left;
+    padding:0.55rem 0.8rem;
+    vertical-align:top;
+  }
+  .effect-table td{
+    border:1px solid var(--line);
+    padding:0.55rem 0.9rem;
+  }
+
+  /* ---------- Legal notice ---------- */
+  .legal{
+    background:var(--paper-dim);
+    border:1px solid var(--line);
+    border-left:4px solid var(--crimson);
+    border-radius:4px;
+    padding:1.3rem 1.5rem;
+    font-size:0.86rem;
+    color:#4a4336;
+    line-height:1.85;
+  }
+  .legal h2{
+    border-bottom-color:var(--crimson);
+  }
+  .legal p{ margin:0 0 0.7rem; }
+  .legal p:last-child{ margin-bottom:0; }
+
+  @media (max-width:560px){
+    nav.toc ol{ columns:1; }
+    .hero{ padding:4rem 1.2rem 3.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="kicker">OFFICIAL RULEBOOK</div>
+  <h1>或陽の大逆転サイコロ</h1>
+  <div class="badge">公式ルールブック v1.2</div>
+</div>
+
+<nav class="toc">
+  <div class="toc-title">目次</div>
+  <ol>
+    <li><a href="#sec1">ゲーム概要</a></li>
+    <li><a href="#sec2">サイコロの種類と準備</a></li>
+    <li><a href="#sec3">ゲームの流れ</a></li>
+    <li><a href="#sec4">出目の決め方</a></li>
+    <li><a href="#sec5">目無しと振り直し</a></li>
+    <li><a href="#sec6">役の強さ</a></li>
+    <li><a href="#sec7">特殊効果「大」</a></li>
+    <li><a href="#sec8">特殊効果「逆」</a></li>
+    <li><a href="#sec9">特殊効果「転」</a></li>
+    <li><a href="#sec10">大逆転 / 大逆転或陽</a></li>
+    <li><a href="#sec11">複合特殊処理</a></li>
+    <li><a href="#sec12">引き分け</a></li>
+    <li><a href="#sec13">先攻・後攻</a></li>
+    <li><a href="#sec14">セット・マッチ</a></li>
+    <li><a href="#sec15">ポイントを賭けるモード</a></li>
+    <li><a href="#sec16">更新履歴</a></li>
+    <li><a href="#legal">ご利用にあたっての注意</a></li>
+  </ol>
+</nav>
+
+<main class="wrap">
+
+<section id="sec1">
+  <h2><span class="num">01</span>ゲーム概要</h2>
+  <p>「或陽の大逆転サイコロ」は、<strong>大・逆・転・或陽</strong>という4種類の特殊なサイコロを使うチンチロ風のサイコロゲームです。2人はもちろん、複数人でも遊べます。盤上には大・逆・転の3個が共有サイコロとして置かれており、参加者が順番に同じ3個を振ります。或陽サイコロは、特殊な処理が必要になった時だけ使用します。</p>
+  <p>基本はチンチロ風の出目勝負ですが、特殊な出目が絡むと「反転」「交換」「総入れ替え」といった大逆転が起こりうるのがこのゲームの最大の特徴です。</p>
+</section>
+
+<section id="sec2">
+  <h2><span class="num">02</span>サイコロの種類と準備</h2>
+  <p>すべて6面体で、特殊面以外は2〜6の数字が入っています。</p>
+  <table>
+    <tr><th>サイコロ</th><th>面の構成</th></tr>
+    <tr><td><span class="special-tag tag-dai">大</span></td><td>大 / 2 / 3 / 4 / 5 / 6</td></tr>
+    <tr><td><span class="special-tag tag-gyaku">逆</span></td><td>逆 / 2 / 3 / 4 / 5 / 6</td></tr>
+    <tr><td><span class="special-tag tag-ten">転</span></td><td>転 / 2 / 3 / 4 / 5 / 6</td></tr>
+    <tr><td><span class="special-tag tag-oyou">或陽</span></td><td>或陽マーク / 2 / 3 / 4 / 5 / 6</td></tr>
+  </table>
+  <p>用意するのは各1個、合計4個。大・逆・転の3個は<strong>参加者全員で共有して順番に振る</strong>サイコロで、普段は卓の真ん中に置いておきます。或陽サイコロは、特殊な処理が必要になった時にだけ振ります。</p>
+</section>
+
+<section id="sec3">
+  <h2><span class="num">03</span>ゲームの流れ</h2>
+  <ol>
+    <li>先攻が、盤上の大・逆・転の3個を振る。</li>
+    <li>出目を確定し、先攻側に記録する。</li>
+    <li>後攻が同じ3個を振る。</li>
+    <li>出目を確定し、後攻側に記録する。</li>
+    <li>両者の出目が揃った時点で、必要な特殊処理を行い、最終的な勝敗を判定する。</li>
+  </ol>
+</section>
+
+<section id="sec4">
+  <h2><span class="num">04</span>出目の決め方</h2>
+
+  <div class="quickref">
+    <div class="quickref-label">早見フローチャート ― 3個振った後、上から順にチェック</div>
+
+    <div class="flow-step"><span class="q">Q1. 3つとも同じ数字(ゾロ目)か？</span></div>
+    <div class="flow-branch">
+      <div class="yes"><b>YES</b> → <span class="flow-result">ピンゾロ</span>(6章)</div>
+      <div class="no"><b>NO</b> → Q2へ</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+
+    <div class="flow-step"><span class="q">Q2. 234／345／456の連続3数字か？</span></div>
+    <div class="flow-branch">
+      <div class="yes"><b>YES</b> → <span class="flow-result">階段</span>(6章)</div>
+      <div class="no"><b>NO</b> → Q3へ</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+
+    <div class="flow-step"><span class="q">Q3. 同じ数字が2つ＋残り1つ、という組み合わせか？</span></div>
+    <div class="flow-branch">
+      <div class="yes"><b>YES</b> → Q4へ</div>
+      <div class="no"><b>NO</b> → Q5へ</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+
+    <div class="flow-step"><span class="q">Q4. 残りの1つは数字か、特殊面(大/逆/転)か？</span></div>
+    <div class="flow-branch">
+      <div class="yes">数字 → <span class="flow-result">通常出目</span>(6章)</div>
+      <div class="no">特殊面 → <span class="flow-result">特殊出目</span>(7〜9章、効果発動)</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+
+    <div class="flow-step"><span class="q">Q5. 特殊面(大/逆/転)が2つ＋数字1つ、という組み合わせか？</span></div>
+    <div class="flow-branch">
+      <div class="yes"><b>YES</b> → その数字がそのまま出目(効果なし)</div>
+      <div class="no"><b>NO</b> → <span class="flow-result">目無し</span>(5章)</div>
+    </div>
+  </div>
+
+  <h3>基本形</h3>
+  <p>同じ数字が2つ、異なる数字が1つ出た場合、異なる方の数字が「出目」になります。</p>
+  <p class="note">例：2・2・6 → 出目6 ／ 5・5・3 → 出目3</p>
+
+  <h3>特殊面が1つ含まれる場合</h3>
+  <p>同じ数字2つ＋特殊面1つの場合、その特殊面が「出目」として確定し、効果が発動します。</p>
+  <p class="note">例：2・2・<span class="special-tag tag-dai">大</span> → 出目「大」／ 5・5・<span class="special-tag tag-gyaku">逆</span> → 出目「逆」</p>
+
+  <h3>特殊面が2つ含まれる場合</h3>
+  <p>特殊面2つ＋数字1つの場合は、数字の方がそのまま通常出目として扱われます。特殊効果は発動しません。</p>
+  <p class="note">例：<span class="special-tag tag-dai">大</span>・<span class="special-tag tag-gyaku">逆</span>・6 → 出目6(効果なし)</p>
+  <p>特殊面は「出目」として確定した場合にのみ効果を発動します。盤面に出ているだけでは何も起こりません。</p>
+</section>
+
+<section id="sec5">
+  <h2><span class="num">05</span>目無しと振り直し</h2>
+  <p>ピンゾロ・階段・通常出目のいずれにも当てはまらない場合、「目無し」になります。</p>
+  <div class="note">
+    各プレイヤーの最初の3個振りに限り、目無しが出た場合はチンチロと同様に振り直しが可能です。最初の1投を含めて<strong>合計3回まで</strong>振ることができ、役が出た時点でその出目を確定とします。3回とも目無しだった場合は、そのまま目無しとして扱われます。
+    <br><br>
+    ※この振り直しルールは各プレイヤーの最初の3個振りのみに適用され、「転」による4個振り直し(9章)には適用されません。
+  </div>
+</section>
+
+<section id="sec6">
+  <h2><span class="num">06</span>役の強さ</h2>
+  <p class="rank">ピンゾロ <span class="gt">＞</span> 階段 <span class="gt">＞</span> 通常出目 <span class="gt">＞</span> 目無し</p>
+
+  <h3>ピンゾロ</h3>
+  <p class="rank">666 <span class="gt">＞</span> 555 <span class="gt">＞</span> 444 <span class="gt">＞</span> 333 <span class="gt">＞</span> 222 <span class="gt">＞</span> 111</p>
+  <p>通常の3個振りでは111は出ません。111は「転」の4個振り(9章)で、或陽を1として選んだ場合にのみ成立します。</p>
+
+  <h3>階段</h3>
+  <p class="rank">456 <span class="gt">＞</span> 345 <span class="gt">＞</span> 234</p>
+
+  <h3>通常出目</h3>
+  <p class="rank">出目6 <span class="gt">＞</span> 出目5 <span class="gt">＞</span> 出目4 <span class="gt">＞</span> 出目3 <span class="gt">＞</span> 出目2</p>
+
+  <h3>同点になった場合のタイブレーク</h3>
+  <p>同じ数字の出目同士が同点になった場合、揃った方(ペア)の数字が大きい方が勝ちます。</p>
+  <p class="note">例：「2・2・3」(出目3、ペア2) と「4・4・3」(出目3、ペア4) → ペア4の方が勝利</p>
+  <p>特殊面2つ＋数字1つの形(4章参照)は数字のペアを持ちませんが、同じ数字の「同じ数字2つ＋異なる数字1つ」型と同点になった場合は、<strong>特殊面2つ＋数字1つの型の方が強い</strong>ものとして扱います。特殊面2つ＋数字1つの型同士が同点になった場合は、比較できる情報が無いため引き分けとなります。</p>
+</section>
+
+<section id="sec7">
+  <h2><span class="num">07</span>特殊効果「大」</h2>
+  <p><span class="special-tag tag-dai">大</span> が出目になった場合に発動します。</p>
+
+  <table class="effect-table">
+    <tr><th>① 数値決定</th><td>大を出した本人が或陽サイコロを振る。出た数字が大の数値(或陽マークは1)。</td></tr>
+    <tr><th>② 効果</th><td>数字の強さが反転：2＞3＞4＞5＞6(ゲーム終了まで継続)</td></tr>
+    <tr><th>③ 例外</th><td>相手が目無しなら或陽を振らずそのまま大側の勝ち。階段・ピンゾロには勝てない。</td></tr>
+  </table>
+
+  <h3>数値の決定</h3>
+  <p>大側本人が或陽サイコロを振り、出た数字を大の数値とします(或陽マークは1として扱う)。</p>
+  <h3>効果：強さの反転</h3>
+  <p>通常の数字の強さを反転させます。</p>
+  <p class="rank">通常：6 <span class="gt">＞</span> 5 <span class="gt">＞</span> 4 <span class="gt">＞</span> 3 <span class="gt">＞</span> 2</p>
+  <p class="rank">大が有効な状態：2 <span class="gt">＞</span> 3 <span class="gt">＞</span> 4 <span class="gt">＞</span> 5 <span class="gt">＞</span> 6</p>
+  <p>相手が目無しの場合は、或陽ロールを行わずそのまま大側の勝利です。階段・ピンゾロは大より強く、通常通りの強さ順が適用されます。大の効果は、そのゲームの最終的な勝敗判定まで継続します。</p>
+</section>
+
+<section id="sec8">
+  <h2><span class="num">08</span>特殊効果「逆」</h2>
+  <p><span class="special-tag tag-gyaku">逆</span> が出目になった場合に発動します。</p>
+
+  <table class="effect-table">
+    <tr><th>① 数値決定</th><td>逆を出した本人が或陽サイコロを振る。出た数字が逆側の「確定値」(或陽マークは1)。</td></tr>
+    <tr><th>② 効果</th><td>確定値と、相手の元の出目の数字を交換する。交換後の2つの数字で勝敗を判定。</td></tr>
+    <tr><th>③ 例</th><td>A＝逆(確定値6)、B＝出目2 → 交換後 A＝2／B＝6 → Bの勝ち</td></tr>
+    <tr><th>④ 特殊な強さ順</th><td>相手が階段/ピンゾロ：役の強さが逆転し、或陽サイで数字(2〜6)が出れば逆側の勝ち。相手が目無し：数字が出ると目無し側の勝ち。或陽マークは不利になる側の救済(階段/ピンゾロ相手は相手の勝ち、目無し相手は逆側の勝ち)。</td></tr>
+  </table>
+
+  <h3>数値の決定</h3>
+  <p>逆を出した本人が或陽サイコロを振り、その結果を逆側の「確定値」とします(或陽マークは1として扱う)。</p>
+  <h3>効果：交換</h3>
+  <p>確定値が決まったら、逆側の確定値と、相手が元々持っていた出目の数字を交換します。交換後の2つの数値で最終的な勝敗を判定します。</p>
+  <p class="note">例：A＝逆(確定値6)、B＝出目2 → 交換後 A＝2、B＝6 → B勝利</p>
+  <h3>相手が目無し・階段・ピンゾロの場合</h3>
+  <p>逆は役の強さを逆転させます。逆側の確定値と相手の役を交換し、交換後の役で勝敗を決めます。</p>
+  <table class="effect-table">
+    <tr><th>相手が階段・ピンゾロ</th><td>或陽サイコロで数字(2〜6)が出れば<strong>逆側の勝ち</strong>(階段・ピンゾロが最弱になるため)。</td></tr>
+    <tr><th>相手が目無し</th><td>或陽サイコロで数字(2〜6)が出ると<strong>目無し側の勝ち</strong>(目無しが最強になるため)。</td></tr>
+    <tr><th>或陽マークが出た時</th><td>逆転で不利になる側への<strong>救済措置</strong>。階段・ピンゾロ相手なら相手側の勝ち、目無し相手なら逆側の勝ち。</td></tr>
+  </table>
+  <p class="note">目無し・階段・ピンゾロを出した側は、相手が逆を出した時点で勝敗が決まってしまうため、或陽マークはその救済として用意されています。</p>
+</section>
+
+<section id="sec9">
+  <h2><span class="num">09</span>特殊効果「転」</h2>
+  <p><span class="special-tag tag-ten">転</span> が出目になった場合に発動します。</p>
+
+  <table class="effect-table">
+    <tr><th>① 基本処理</th><td>両者とも4個全部(大・逆・転・或陽)を振り直す。大/逆/転の面は1として扱い、或陽マークは1〜6の好きな数字として扱ってよい。</td></tr>
+    <tr><th>② 3つ選ぶ</th><td>振った4個から3個を選んで役を作る(或陽マークを1にして他の強制1と重ね、111ピンゾロにすることも可)。役が作れるのに目無しを選ぶ場合は要確認。役が全く作れない時のみ自動的に目無し。</td></tr>
+    <tr><th>③ 転×階段/ピンゾロ</th><td>相手(階段/ピンゾロ側)が「そのまま保持」か「両者とも4個振り直し」かを選べる。</td></tr>
+    <tr><th>④ 転×目無し</th><td>選択権なく、両者とも4個振り直しへ。</td></tr>
+  </table>
+
+  <h3>基本処理</h3>
+  <p>両プレイヤーが4個すべてのサイコロ(大・逆・転・或陽)を使って振り直します。</p>
+  <table>
+    <tr><th>出た面</th><th>扱い</th></tr>
+    <tr><td>大 / 逆 / 転</td><td>1として扱う</td></tr>
+    <tr><td>或陽マーク</td><td>1〜6の好きな数字としてプレイヤーが選択可能</td></tr>
+  </table>
+  <h3>4個から3個を選ぶ</h3>
+  <p>振られた4つのサイコロから3つをタップして選び、できる出目を確定します。或陽マークを1として選べば、他の強制1と重なって「111ピンゾロ」を作ることも可能です。4つの中に役を作れる組み合わせがあるのに目無しになる選び方をした場合は確認が入り、役が全く作れない場合は自動的に目無しとなります。4個振りの中で大・逆・転が出ても、それぞれの特殊効果は発動しません。</p>
+  <h3>転×階段・ピンゾロ</h3>
+  <p>相手が階段・ピンゾロの場合、その相手に「そのまま保持」か「両者とも4個振りへ移行」かの選択権があります。転×目無しの場合は選択権なく、両者とも4個振りへ移行します。</p>
+</section>
+
+<section id="sec10">
+  <h2><span class="num">10</span>大逆転 / 大逆転或陽</h2>
+  <h3>大逆転</h3>
+  <p>通常の3個振りで、共有の大・逆・転サイコロが<strong>それぞれ自分自身の特殊面</strong>を出した場合(自分の手番で、大が「大」、逆が「逆」、転が「転」を同時に出す)、大逆転が成立します。通常の役判定は行わず、その時点でそのプレイヤーがゲームを獲得します。進行は先攻→後攻の順のため、先攻が大逆転を成立させた場合、後攻は振らずに即時決着します。</p>
+  <h3>大逆転或陽</h3>
+  <p>「転」の4個振りで、大・逆・転・或陽の4つすべてが、それぞれ自分自身の特殊面を出した場合、大逆転或陽が成立します。通常の役判定を行わず、その時点でそのセットを獲得します。両者が同時に大逆転或陽を成立させた場合は、4個を振り直します。</p>
+</section>
+
+<section id="sec11">
+  <h2><span class="num">11</span>複合特殊処理</h2>
+
+  <table>
+    <tr><th>組み合わせ</th><th>処理の要点</th></tr>
+    <tr>
+      <td><span class="special-tag tag-dai">大</span>+<span class="special-tag tag-dai">大</span> ／ <span class="special-tag tag-gyaku">逆</span>+<span class="special-tag tag-gyaku">逆</span></td>
+      <td>互いに或陽を振り、大きい方が勝ち。強さ順：或陽マーク＞6＞5＞4＞3＞2。</td>
+    </tr>
+    <tr>
+      <td><span class="special-tag tag-ten">転</span>+<span class="special-tag tag-ten">転</span></td>
+      <td>通常の転ルールをそのまま適用(両者4個振り直し)。</td>
+    </tr>
+    <tr>
+      <td><span class="special-tag tag-dai">大</span>+<span class="special-tag tag-gyaku">逆</span></td>
+      <td>先攻→後攻の順で各自或陽を振る。大側の数値と逆側の確定値を交換。大の反転効果は交換後も継続し、反転ランキングで比較。同数なら引き分け。</td>
+    </tr>
+    <tr>
+      <td><span class="special-tag tag-dai">大</span>+<span class="special-tag tag-ten">転</span> ／ <span class="special-tag tag-gyaku">逆</span>+<span class="special-tag tag-ten">転</span></td>
+      <td>転を優先。大・逆の効果は発動せず、両者そのまま4個振り直しへ。</td>
+    </tr>
+  </table>
+
+  <h3>大 + 大 ／ 逆 + 逆</h3>
+  <p>両者が同じ特殊出目を出した場合、互いに或陽サイコロを振り、大きい方が勝ちます。強さ順：<span class="rank">或陽マーク <span class="gt">＞</span> 6 <span class="gt">＞</span> 5 <span class="gt">＞</span> 4 <span class="gt">＞</span> 3 <span class="gt">＞</span> 2</span>。</p>
+  <h3>転 + 転</h3>
+  <p>通常の転ルール(両者4個振り直し)をそのまま適用します。</p>
+  <h3>大 + 逆</h3>
+  <p>処理順は先攻→後攻。大側が或陽を振って数値を確定し、逆側も或陽を振って確定値を決めた後、大側の数値と逆側の確定値を交換します。大の反転効果は交換後も継続するため、最終的には交換後の数値を反転ランキングで比較します。同数の場合は引き分けです。</p>
+  <h3>大 + 転 ／ 逆 + 転</h3>
+  <p>転を優先します。大・逆の特殊効果は発動せず、そのまま両者4個振りへ移行します。</p>
+</section>
+
+<section id="sec12">
+  <h2><span class="num">12</span>引き分け</h2>
+  <p>最終結果が完全に同じでタイブレークも適用できない場合、そのゲームは引き分けとして流れます。スコアは変化せず、次のゲームへ進みます。</p>
+</section>
+
+<section id="sec13">
+  <h2><span class="num">13</span>先攻・後攻</h2>
+  <p>マッチ開始時は両者が或陽サイコロを振り、大きい方(或陽マークが最強)が先攻・後攻を選べます。同点の場合は振り直します。セット内ではゲームごとに先攻を交代し、セット終了後の次セット1ゲーム目は、前セットの敗者が先攻になります。</p>
+</section>
+
+<section id="sec14">
+  <h2><span class="num">14</span>セット・マッチ</h2>
+  <ul>
+    <li><strong>セット</strong>：6ゲーム先取で獲得。5-5になった場合は2ゲーム差がつくまで継続。</li>
+    <li><strong>マッチ</strong>：3セットマッチ。2セット先取でマッチ勝利。</li>
+    <li><strong>大逆転或陽</strong>が発生した場合、現在のゲームカウントに関係なく、そのプレイヤーがセットを獲得します。</li>
+  </ul>
+</section>
+
+<section id="sec15">
+  <h2><span class="num">15</span>ポイントを賭けるモード</h2>
+  <p>役の強さだけを競う通常モードに加えて、持ち点を賭け合う「ポイントを賭けるモード」も選べます。</p>
+
+  <h3>基本ルール</h3>
+  <ul>
+    <li>両者とも持ち点10,000ptからスタート。</li>
+    <li>或陽ロールの対決で親・子を決定し、勝った方が親か子かを選ぶ。</li>
+    <li>毎ゲーム、子が賭け金(100〜2,000pt、100pt単位、自分の持ち点が上限)を設定する。</li>
+    <li>親→子の順で3個を振り、通常モードと同じ流れで勝敗を判定する。</li>
+    <li>勝者は、成立した役の倍率ぶん賭け金を受け取る。負けた側が目無しであっても、倍率は変わらずそのまま適用される。</li>
+  </ul>
+
+  <h3>配当倍率</h3>
+  <table>
+    <tr><th>成立した役</th><th>倍率</th></tr>
+    <tr><td>大逆転或陽</td><td>×10</td></tr>
+    <tr><td>大逆転</td><td>×7</td></tr>
+    <tr><td>ピンゾロ</td><td>×5</td></tr>
+    <tr><td>出目「大」「逆」</td><td>×3</td></tr>
+    <tr><td>階段</td><td>×2</td></tr>
+    <tr><td>通常出目</td><td>×1</td></tr>
+  </table>
+  <p>「転」で振り直した場合は、最終的に確定した役の倍率が適用されます(転そのものに固有の倍率はありません)。</p>
+  <div class="note">
+    賭け金×倍率の計算や、複数人で遊ぶ際のポイントの受け渡しには、お手持ちのスマートフォンの電卓アプリなどを使うと手早く正確に計算できます。
+  </div>
+
+  <h3>試合構成</h3>
+  <p>1セット6ゲーム×2セット、合計12ゲームを行い、終了時点で持ち点が多い方が勝者です。引き分けはポイントが動かず、ゲーム数のカウントにも含まれません。</p>
+  <div class="note strong">
+    賭け金の上限(100〜2,000pt)や試合構成(6ゲーム×2セット)は現在調整中の数値です。プレイ感に応じて今後変更される場合があります。
+  </div>
+</section>
+
+<section id="sec16">
+  <h2><span class="num">16</span>更新履歴</h2>
+  <div class="changelog-grid">
+    <div class="changelog-item">
+      <div class="v">v1.0</div>
+      初版。4種のサイコロ・基本役・各特殊効果・セット/マッチ制を定義。
+    </div>
+    <div class="changelog-item">
+      <div class="v">v1.1</div>
+      通常出目の同点タイブレーク(ペア判定)ルールを追加。「逆」の或陽ロールを「大」と同じく本人が振る進行に統一。大逆転どうしの同時成立による振り直しルールを廃止し、先攻が成立させた時点で即時決着する仕様に変更。特殊面2つ＋数字1つ型と通常のペア型が同点になった場合、特殊面2つ型を優先する裁定を追加。
+    </div>
+    <div class="changelog-item">
+      <div class="v">v1.2</div>
+      各プレイヤー最初の3個振りに限り、目無し時にチンチロ式の振り直し(最大3回)を行えるルールを追加。持ち点を賭け合う「ポイントを賭けるモード」を新設(配当倍率・賭け金ルール・試合構成を含む)。
+    </div>
+  </div>
+</section>
+
+<section id="legal" class="legal">
+  <h2><span class="num">※</span>ご利用にあたっての注意</h2>
+  <p>「ポイントを賭けるモード」は、換金性のないポイントのやり取りによって対戦を盛り上げるための遊び方であり、現金・金銭、またはこれに相当する財産上の利益を賭けて遊ぶことを想定したものではありません。</p>
+  <p>現金や金銭的価値のある物品を賭けて本ゲームを行うことは賭博にあたり、法律により禁止されています。実際にプレイされる際は、金銭や財産上の利益を賭けることのないよう、ポイントや点数チップなど換金性のない手段の範囲でお楽しみください。</p>
+</section>
+
+</main>
+
+<footer>
+  或陽の大逆転サイコロ ― 公式ルールブック v1.2
+</footer>
+
+</body>
+</html>
